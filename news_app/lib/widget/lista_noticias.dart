@@ -45,7 +45,13 @@ class _Noticia extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        Divider(),
+        _Botones(
+          noticia: this.noticia,
+          index: index,
+        ),
+        Divider(
+          color: mitemaGlobal.accentColor,
+        ),
       ],
     );
   }
@@ -68,6 +74,7 @@ class _Tabtopbar extends StatelessWidget {
             '${index + 1}',
             style: TextStyle(color: mitemaGlobal.accentColor),
           ),
+          SizedBox(width: 10,),
           Text('${noticia.source.name}'),
         ],
       ),
@@ -89,7 +96,7 @@ class _TarjeImagen extends StatelessWidget {
           child: (noticia.urlToImage != null)
               ? FadeInImage(
                   placeholder: AssetImage('assets/giphy.gif'),
-                  fadeInDuration: Duration(seconds: 3),
+                  fadeInDuration: Duration(seconds: 2),
                   image: NetworkImage(noticia.urlToImage),
                 )
               : Image(image: AssetImage('assets/no-image.png'))),
@@ -109,6 +116,44 @@ class _TarjetBody extends StatelessWidget {
         horizontal: 20,
       ),
       child: Text((noticia.description != null) ? noticia.description : ''),
+    );
+  }
+}
+
+class _Botones extends StatelessWidget {
+  final Article noticia;
+  final int index;
+
+  const _Botones({Key key, this.noticia, this.index});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          RawMaterialButton(
+            onPressed: () {
+              //print(noticia.description);
+              //con el navigator.of lo puedo lanzar a otra ventana para ver mas informacion.
+            },
+            fillColor: mitemaGlobal.accentColor,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25.0)),
+            child: Icon(Icons.star_border),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          RawMaterialButton(
+            onPressed: () {},
+            fillColor: Colors.red,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25.0)),
+            child: Icon(Icons.more_outlined),
+          ),
+        ],
+      ),
     );
   }
 }

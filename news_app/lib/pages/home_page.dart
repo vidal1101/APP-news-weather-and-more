@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/pages/tabnew1_page.dart';
 import 'package:provider/provider.dart';
+import 'package:news_app/pages/tabnew1_page.dart';
+import 'package:news_app/pages/tabnew2_page.dart';
 
 class Home_Page extends StatelessWidget {
   const Home_Page({Key key}) : super(key: key);
@@ -9,13 +10,34 @@ class Home_Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => _NavegacionModal(),
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('News '),
+      child: SafeArea(
+        child: Scaffold(
+          /*appBar: AppBar(
+            title: Text('News '),
+          ),
+          */
+          body: _paginas(),
+          bottomNavigationBar: _navegacion(),
         ),
-        body: _paginas(),
-        bottomNavigationBar: _navegacion(),
       ),
+    );
+  }
+}
+
+class _paginas extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final navegar = Provider.of<_NavegacionModal>(context);
+
+    return PageView(
+      controller: navegar.pageControler,
+      physics: NeverScrollableScrollPhysics(),
+      children: <Widget>[
+        Tab1Page(),
+        Tab2Page(),
+        //Container(color: Colors.purpleAccent),
+        //
+      ],
     );
   }
 }
@@ -38,24 +60,6 @@ class _navegacion extends StatelessWidget {
           BottomNavigationBarItem(
               icon: Icon(Icons.public), title: Text('Encabezados')),
         ]);
-  }
-}
-
-class _paginas extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final navegar = Provider.of<_NavegacionModal>(context);
-
-    return PageView(
-      controller: navegar.pageControler,
-      physics: NeverScrollableScrollPhysics(),
-      children: <Widget>[
-        Tab1Page(),
-        Container(color: Colors.blue),
-        //Container(color: Colors.purpleAccent), 
-        //
-      ],
-    );
   }
 }
 
