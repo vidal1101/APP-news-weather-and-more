@@ -3,8 +3,7 @@ import 'package:news_app/models/category_modal.dart';
 import 'package:news_app/models/new_models.dart';
 import 'package:http/http.dart' as ht;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'dart:async';
-import 'dart:convert';
+
 
 final _URL_NEWS = 'https://newsapi.org/v2';
 final API_KEY = '22d6a70138ee45089387164837697fc3';
@@ -58,7 +57,7 @@ class New_Service with ChangeNotifier {
       this.categoriasNews[this.getselectedCategoria];
 
   gettopHeaderlines() async {
-    final url = "$_URL_NEWS/top-headlines?apiKey=$API_KEY&country=mx";
+    final url = "$_URL_NEWS/top-headlines?apiKey=$API_KEY&country=us";
     final response = await ht.get(Uri.parse(url));
     final newRespon = newResponseFromJson(response.body);
     this.headers.addAll(newRespon.articles);
@@ -70,7 +69,7 @@ class New_Service with ChangeNotifier {
  */
   getCategoriasNew(String categoriaSele) async {
     final url =
-        "$_URL_NEWS/top-headlines?apiKey=$API_KEY&country=mx&category=$categoriaSele";
+        "$_URL_NEWS/top-headlines?apiKey=$API_KEY&country=us&category=$categoriaSele";
     final response = await ht.get(Uri.parse(url));
     final newRespon = newResponseFromJson(response.body);
 
@@ -79,8 +78,7 @@ class New_Service with ChangeNotifier {
      * carga las noticias de la categoria seleccionada, 
      */
     this.categoriasNews[categoriaSele].addAll(newRespon.articles);
-
-/**
+/**  
  * al usar patron singleton, esto notifica a todo servidor que hay nuevas peticiones
  */
     notifyListeners();

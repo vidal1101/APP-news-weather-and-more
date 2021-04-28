@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/theme/tema.dart';
+import 'package:news_app/widget/drawer_lateral.dart';
 import 'package:provider/provider.dart';
 import 'package:news_app/pages/tabnew1_page.dart';
 import 'package:news_app/pages/tabnew2_page.dart';
 
 class Home_Page extends StatelessWidget {
-  const Home_Page({Key key}) : super(key: key);
+  //nombre para referirme a la pagina  desde eotra con el routename
+  static final String routeName = 'home';
 
   @override
   Widget build(BuildContext context) {
@@ -12,17 +15,20 @@ class Home_Page extends StatelessWidget {
       create: (_) => _NavegacionModal(),
       child: SafeArea(
         child: Scaffold(
-          /*appBar: AppBar(
-            title: Text('News '),
+          appBar: AppBar(
+            title: Text('News App '),
           ),
-          */
+          drawer: Drawer_Page(),
           body: _paginas(),
           bottomNavigationBar: _navegacion(),
         ),
       ),
     );
   }
+  
 }
+
+ 
 
 class _paginas extends StatelessWidget {
   @override
@@ -68,6 +74,7 @@ class _navegacion extends StatelessWidget {
  */
 class _NavegacionModal with ChangeNotifier {
   int _paginaActual = 0;
+
   PageController _pageController = new PageController();
 
   int get paginaActual => this._paginaActual;

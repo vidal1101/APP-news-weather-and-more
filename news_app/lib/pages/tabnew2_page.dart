@@ -17,6 +17,8 @@ class _Tab2PageState extends State<Tab2Page>
     final newSercicesCategoria =
         Provider.of<New_Service>(context).getnewCategoriaSeleccionada;
 
+    
+
     return Scaffold(
       body: Container(
         child: Column(
