@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/pages/home_page.dart';
+import 'package:news_app/pages/home_page_movies.dart';
 import 'package:news_app/pages/setting.dart';
 import 'package:news_app/theme/tema.dart';
 
@@ -46,7 +47,12 @@ class Drawer_Page extends StatelessWidget {
               color: mitemaGlobal.accentColor,
             ),
             trailing: trailing(),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePageMovies() ),
+              );
+            },
           ),
           ListTile(
             title: Text('Weather'),
