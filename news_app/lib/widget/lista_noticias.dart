@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/models/new_models.dart';
+import 'package:news_app/pages/detalls_page.dart';
 import 'package:news_app/theme/tema.dart';
 
 class Lista_Noticias extends StatelessWidget {
@@ -74,7 +75,9 @@ class _Tabtopbar extends StatelessWidget {
             '${index + 1}',
             style: TextStyle(color: mitemaGlobal.accentColor),
           ),
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
           Text('${noticia.source.name}'),
         ],
       ),
@@ -134,7 +137,8 @@ class _Botones extends StatelessWidget {
         children: <Widget>[
           RawMaterialButton(
             onPressed: () {
-              //print(noticia.description);
+              print(noticia.description);
+              
               //con el navigator.of lo puedo lanzar a otra ventana para ver mas informacion.
             },
             fillColor: mitemaGlobal.accentColor,
@@ -146,7 +150,12 @@ class _Botones extends StatelessWidget {
             width: 10,
           ),
           RawMaterialButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DetallsNews(noticia: noticia, )),
+              );
+            },
             fillColor: Colors.red,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(25.0)),
