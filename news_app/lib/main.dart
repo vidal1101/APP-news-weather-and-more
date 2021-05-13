@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => new New_Service() ),
       ],
           child: MaterialApp(
-        title: 'Flutter Demo',
         theme: mitemaGlobal,
         debugShowCheckedModeBanner: false,
         //initialRoute: '/',
