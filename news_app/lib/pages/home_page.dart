@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/theme/tema.dart';
 import 'package:news_app/widget/drawer_lateral.dart';
 import 'package:provider/provider.dart';
 import 'package:news_app/pages/tabnew1_page.dart';
@@ -34,13 +33,12 @@ class _paginas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final navegar = Provider.of<_NavegacionModal>(context);
-
     return PageView(
       controller: navegar.pageControler,
       physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
-        Tab1Page(),
-        Tab2Page(),
+        Tab1Page(), //seccion de noticias
+        Tab2Page(),  //sesion de emcabezados
         //Container(color: Colors.purpleAccent),
         //
       ],
@@ -88,7 +86,7 @@ class _NavegacionModal with ChangeNotifier {
     this._paginaActual = valor;
     /**se navega por l paginas porque el getter se establece en el pageview en el controller */
     _pageController.animateToPage(valor,
-        duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
+        duration: Duration(milliseconds: 600), curve: Curves.easeInCubic);
     notifyListeners();
   }
 }

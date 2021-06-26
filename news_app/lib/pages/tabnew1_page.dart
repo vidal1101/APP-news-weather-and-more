@@ -20,7 +20,7 @@ class _Tab1PageState extends State<Tab1Page>
     final newservice = Provider.of<New_Service>(context);
 
     return Scaffold(
-      body: (newservice.headers.length == 0)
+      body: (newservice.headers.length == 0) //si no hay data se carga el loading
           ? Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -35,7 +35,7 @@ class _Tab1PageState extends State<Tab1Page>
                 ],
               ),
             )
-          : Lista_Noticias(newservice.headers),
+          : Lista_Noticias(newservice.headers), // existe la data, carga las noticias
     );
   }
 

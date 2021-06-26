@@ -30,10 +30,12 @@ class _SettingsPageState extends State<SettingsPage> {
    */
   loadprefs() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    _genero  = prefs.getInt("genero");
+    _genero = prefs.getInt("genero");
+    _nombre = prefs.getString("nombre");
     setState(() {});
   }
 
+  
 /**
  * usando sharedpreferences, similitud a localStorage, 
  * guarda la data en clave, valor. 
@@ -44,6 +46,14 @@ class _SettingsPageState extends State<SettingsPage> {
     _genero = gender;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setInt("genero", gender);
+    setState(() {});
+  }
+
+  setnombre(String nombre) async {
+    print(nombre);
+    _nombre = nombre;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString("nombre", nombre);
     setState(() {});
   }
 
@@ -95,7 +105,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 labelText: "Nombre",
                 helperText: "Nombre del usuario con el dispositivo",
               ),
-              onChanged: (nombre) {},
+              onChanged: setnombre ,
             ),
           ),
         ],
