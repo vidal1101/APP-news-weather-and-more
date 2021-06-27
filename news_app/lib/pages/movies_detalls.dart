@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:news_app/models/movie_models.dart';
 
 class Movie_Detalls extends StatelessWidget {
+  final Pelicula pelicula;
+
+  const Movie_Detalls({Key key, this.pelicula}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final Pelicula pelicula = ModalRoute.of(context).settings.arguments;
+    //final Pelicula pelicula = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
       body: CustomScrollView(
@@ -19,7 +23,6 @@ class Movie_Detalls extends StatelessWidget {
             _description(pelicula),
             _description(pelicula),
             _description(pelicula),
-
             _description(pelicula),
             _description(pelicula),
             _description(pelicula),
@@ -104,9 +107,12 @@ class Movie_Detalls extends StatelessWidget {
 
   Widget _description(Pelicula peli) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10.0 , vertical: 10.0),
-      child: Text(peli.overview.toString(),  style: TextStyle(fontWeight: FontWeight.w600),
-      textAlign: TextAlign.justify,),
+      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+      child: Text(
+        peli.overview.toString(),
+        style: TextStyle(fontWeight: FontWeight.w600),
+        textAlign: TextAlign.justify,
+      ),
     );
   }
 }

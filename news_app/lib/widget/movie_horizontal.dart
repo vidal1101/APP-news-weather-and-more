@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:news_app/models/movie_models.dart';
+import 'package:news_app/pages/movies_detalls.dart';
 
 class MoviesHorizobtal extends StatelessWidget {
   final List<Pelicula> peliculas;
@@ -82,7 +83,11 @@ class MoviesHorizobtal extends StatelessWidget {
     return GestureDetector(
       child: _tarjeta,
       onTap: () {
-        //Navigator.pushNamed(context, 'detalle' , arguments: peli);
+
+
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> Movie_Detalls(pelicula: peli,) ));
+
+       // Navigator.pushNamed(context, 'detalle' , arguments: peli);
       },
     );
   }

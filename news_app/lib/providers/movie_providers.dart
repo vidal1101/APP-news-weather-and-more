@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:http/http.dart' as http;
+import 'package:news_app/models/actores_movies_model.dart';
 import 'dart:convert';
 import 'dart:async';
 
@@ -76,6 +77,28 @@ las peliculas listas para ser usadas en la app.
     return response;
   }
 
+
+  Future<List<Actor>> getActores (String peliId) async{
+
+    final url = Uri.https(_url, '3/movie/$peliId/credits',{
+      'api_key': _apiKey,
+      'language': _lenguaje,
+    });
+
+    final response = await http.get(url);
+    final decodeData  = json.decode(response.body);
+
+    final cast = new Actores.fromJsonList(decodeData['cast']);
+
+    return cast.actoresMovie;
+
+
+
+  }
+
+
+
+/**------------------------------------------------------------------------------------- */
   Future<dynamic> getData() async {
     this._popularespages++;
     String url = "api.thecatapi.com";

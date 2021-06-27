@@ -8,12 +8,18 @@ import 'package:news_app/widget/drawer_lateral.dart';
 import 'package:news_app/widget/movie_horizontal.dart';
 import 'package:news_app/widget/swiper_tarjet.dart';
 
+/**
+ * 
+ * Seccion de inicio de peliculas
+ * 
+ * 
+ */
 class HomePageMovies extends StatelessWidget {
   final movieProvider = new MoviesProviders();
+  Padding padding = new Padding(padding: EdgeInsets.all(1.5));
 
   @override
   Widget build(BuildContext context) {
-    Padding padding = new Padding(padding: EdgeInsets.all(5.0));
     this.movieProvider.getPopulars();
 
     return Scaffold(
@@ -56,68 +62,20 @@ class HomePageMovies extends StatelessWidget {
     return Container(
       height: 350.0,
       child: Center(
-        child: CircularProgressIndicator(
-          backgroundColor: Colors.deepPurple,
-          
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            CircularProgressIndicator(
+              strokeWidth: 4.6,
+              backgroundColor: Colors.deepPurple,
+            ),
+            padding,
+            Text('LOADING MOVIES...'),
+          ],
         ),
       ),
     );
   }
-
-
-  Widget _drawerHeader(){
-    return  ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              child: Text("Drawer Text"),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-            ),
-            ListTile(
-              title: Text(
-                'Peliculas',
-                style: TextStyle(fontWeight: FontWeight.bold),
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            Divider(
-              color: Colors.redAccent,
-            ),
-            ListTile(
-              title: Text(
-                'Noticias',
-                style: TextStyle(fontWeight: FontWeight.bold),
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            Divider(
-              color: Colors.redAccent,
-            ),
-            ListTile(
-              title: Text(
-                'Clima',
-                style: TextStyle(fontWeight: FontWeight.bold),
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            Divider(
-              color: Colors.redAccent,
-            ),
-            ListTile(
-              title: Text(
-                'configuaración',
-                style: TextStyle(fontWeight: FontWeight.bold),
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-          ],
-        );
-  }
-
-
-
 
   Widget _footer() {
     return Container(
@@ -177,5 +135,56 @@ Solo eran unas pruebas de otra API para mostrar datos.
       lista.add(Text(elemento["name"]));
     });
     return lista;
+  }
+
+  Widget _drawerHeader() {
+    return ListView(
+      padding: EdgeInsets.zero,
+      children: <Widget>[
+        DrawerHeader(
+          child: Text("Drawer Text"),
+          decoration: BoxDecoration(
+            color: Colors.blue,
+          ),
+        ),
+        ListTile(
+          title: Text(
+            'Peliculas',
+            style: TextStyle(fontWeight: FontWeight.bold),
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+        Divider(
+          color: Colors.redAccent,
+        ),
+        ListTile(
+          title: Text(
+            'Noticias',
+            style: TextStyle(fontWeight: FontWeight.bold),
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+        Divider(
+          color: Colors.redAccent,
+        ),
+        ListTile(
+          title: Text(
+            'Clima',
+            style: TextStyle(fontWeight: FontWeight.bold),
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+        Divider(
+          color: Colors.redAccent,
+        ),
+        ListTile(
+          title: Text(
+            'configuaración',
+            style: TextStyle(fontWeight: FontWeight.bold),
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
+    );
   }
 }

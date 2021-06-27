@@ -36,7 +36,7 @@ class Drawer_Page extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Home_Page()),
+                MaterialPageRoute(builder: (_) => Home_Page()),  // Noticias en la sesccion de inicio 
               );
             },
           ),
@@ -50,7 +50,7 @@ class Drawer_Page extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomePageMovies() ),
+                MaterialPageRoute(builder: (_) => HomePageMovies() ), // peliculas
               );
             },
           ),
@@ -61,7 +61,7 @@ class Drawer_Page extends StatelessWidget {
               color: mitemaGlobal.accentColor,
             ),
             trailing: trailing(),
-            onTap: () {},
+            onTap: () {},  // seccion de clima que estaria en desarrollo
           ),
           ListTile(
             title: Text('Setting'),
@@ -73,7 +73,7 @@ class Drawer_Page extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SettingsPage()),
+                MaterialPageRoute(builder: (context) => SettingsPage()),  // la opcion de configuraciones del sistema.
               );
             },
           ),
