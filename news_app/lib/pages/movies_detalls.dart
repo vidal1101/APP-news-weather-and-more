@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/models/actores_movies_model.dart';
 import 'package:news_app/models/movie_models.dart';
+import 'package:news_app/providers/movie_providers.dart';
 
 class Movie_Detalls extends StatelessWidget {
+  //objeto pelicula
   final Pelicula pelicula;
 
-  const Movie_Detalls({Key key, this.pelicula}) : super(key: key);
+  //contructor de la clase
+  Movie_Detalls({Key key, @required this.pelicula}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +25,9 @@ class Movie_Detalls extends StatelessWidget {
             ),
             _postertitle(pelicula),
             _description(pelicula),
-            _description(pelicula),
-            _description(pelicula),
-            _description(pelicula),
-            _description(pelicula),
-            _description(pelicula),
+           // _description(pelicula),
+           
+            _actoresMovie(pelicula),
           ])),
         ],
       ),
@@ -112,6 +114,97 @@ class Movie_Detalls extends StatelessWidget {
         peli.overview.toString(),
         style: TextStyle(fontWeight: FontWeight.w600),
         textAlign: TextAlign.justify,
+      ),
+    );
+  }
+
+  /**
+   * recibe la pelicula y llama a providers para trear la data, 
+   * en este caso en un future, porque es un sola peticion y finita
+   * 
+   */
+  Widget _actoresMovie(Pelicula peli) {
+    final moviesProviders = new MoviesProviders();
+    return Container(
+      width: double.infinity,
+      child: Column(
+        children: <Widget>[
+          FutureBuilder(
+              future: moviesProviders.getActores(peli.id.toString()),
+              builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+                if (snapshot.hasData)
+                  return carruselActores(
+                      snapshot.data); //la data que lleva, son los actores.
+                else
+                  return _progressIndicator();
+              }),
+        ],
+      ),
+    );
+  }
+
+  /**
+   * llega la data de actores de la peticion para ser descompueta en un vista 
+   */
+  Widget carruselActores(List<Actor> actores) {
+    return SizedBox(
+      height: 200.0,
+      child: PageView.builder(
+        pageSnapping: false,
+        controller: PageController(
+          viewportFraction: 0.3,
+          initialPage: 1,
+        ),
+        itemCount: actores.length,
+        itemBuilder: (context, index) => _actorTarjeta(actores[index]),
+      ),
+    );
+  }
+
+
+  /**
+   * muestra cada actor en un tarjeta
+   */
+  Widget _actorTarjeta(Actor actor) {
+    
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+      child: Column(
+        children: <Widget>[
+           Text(
+              '${actor.name}' ,
+              style: TextStyle(fontSize: 12.0),
+            ),
+          
+          ClipRRect(
+            borderRadius: BorderRadius.circular(30.0),
+            child: FadeInImage(
+                fadeInDuration: Duration(seconds: 1),
+                placeholder: AssetImage('assets/backloading.gif'),
+                image: NetworkImage(actor.getPosterImgProfileActor())),
+          ),
+        ],
+      ),
+    );
+  }
+
+/**
+ * indicador de data en proceso.
+ *  */
+  Widget _progressIndicator() {
+    return Container(
+      height: 350.0,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            CircularProgressIndicator(
+              strokeWidth: 4.6,
+              backgroundColor: Colors.deepPurple,
+            ),
+            //Text('LOADING MOVIES...'),
+          ],
+        ),
       ),
     );
   }

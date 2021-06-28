@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import 'package:news_app/providers/movie_providers.dart';
-import 'package:news_app/theme/tema.dart';
 import 'package:news_app/widget/drawer_lateral.dart';
 import 'package:news_app/widget/movie_horizontal.dart';
 import 'package:news_app/widget/swiper_tarjet.dart';
