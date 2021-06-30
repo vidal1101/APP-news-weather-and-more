@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/models/actores_movies_model.dart';
 import 'package:news_app/models/movie_models.dart';
 import 'package:news_app/providers/movie_providers.dart';
+import 'package:news_app/theme/tema.dart';
 
 class Movie_Detalls extends StatelessWidget {
   //objeto pelicula
@@ -10,8 +11,44 @@ class Movie_Detalls extends StatelessWidget {
   //contructor de la clase
   Movie_Detalls({Key key, @required this.pelicula}) : super(key: key);
 
+/**
+ * el controller de la lista de actores
+ * viewport.. fracciona cuantas page view se veran al inicio, segun el espacio indicado.
+ * el initial, la pageview donde inicia cada vez que muestra informacion. 
+ */
+  PageController _pageController = new PageController(
+    viewportFraction: 0.3,
+    initialPage: 1,
+  );
+
   @override
   Widget build(BuildContext context) {
+    final s = MediaQuery.of(context).size;
+
+    /**
+     * 
+     * efecto tipo resorte,
+     * en los actores
+     */
+    _pageController.addListener(() {
+      if (_pageController.position.pixels ==
+          _pageController.position.maxScrollExtent) {
+        _pageController.position.animateTo(
+          _pageController.position.maxScrollExtent - s.width * 0.35,
+          duration: Duration(milliseconds: 1000),
+          curve: Curves.elasticOut,
+        );
+      }
+      if (_pageController.position.pixels ==
+          _pageController.position.minScrollExtent) {
+        _pageController.position.animateTo(
+          s.width * 0.3,
+          duration: Duration(milliseconds: 1000),
+          curve: Curves.elasticOut,
+        );
+      }
+    });
+
     //final Pelicula pelicula = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
@@ -25,8 +62,8 @@ class Movie_Detalls extends StatelessWidget {
             ),
             _postertitle(pelicula),
             _description(pelicula),
-           // _description(pelicula),
-           
+            // _description(pelicula),
+
             _actoresMovie(pelicula),
           ])),
         ],
@@ -60,14 +97,17 @@ class Movie_Detalls extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 10.0),
       child: Row(
         children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(15.0),
-            child: FadeInImage(
-              fadeInDuration: Duration(seconds: 1),
-              placeholder: AssetImage('assets/backloading.gif'),
-              image: NetworkImage(peli.getPosterImg()),
-              fit: BoxFit.cover,
-              height: 150.0,
+          Hero(
+            tag: peli.id,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15.0),
+              child: FadeInImage(
+                fadeInDuration: Duration(seconds: 1),
+                placeholder: AssetImage('assets/backloading.gif'),
+                image: NetworkImage(peli.getPosterImg()),
+                fit: BoxFit.cover,
+                height: 150.0,
+              ),
             ),
           ),
           SizedBox(width: 20.0),
@@ -128,7 +168,18 @@ class Movie_Detalls extends StatelessWidget {
     return Container(
       width: double.infinity,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Text(
+              'Actores',
+              style: TextStyle(fontSize: 25.0),
+            ),
+          ),
+          Divider(
+            color: mitemaGlobal.accentColor,
+          ),
           FutureBuilder(
               future: moviesProviders.getActores(peli.id.toString()),
               builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
@@ -148,34 +199,28 @@ class Movie_Detalls extends StatelessWidget {
    */
   Widget carruselActores(List<Actor> actores) {
     return SizedBox(
-      height: 200.0,
+      height: 250.0,
       child: PageView.builder(
         pageSnapping: false,
-        controller: PageController(
-          viewportFraction: 0.3,
-          initialPage: 1,
-        ),
+        controller: _pageController,
         itemCount: actores.length,
         itemBuilder: (context, index) => _actorTarjeta(actores[index]),
       ),
     );
   }
 
-
   /**
    * muestra cada actor en un tarjeta
    */
   Widget _actorTarjeta(Actor actor) {
-    
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
       child: Column(
         children: <Widget>[
-           Text(
-              '${actor.name}' ,
-              style: TextStyle(fontSize: 12.0),
-            ),
-          
+          Text(
+            '${actor.name}',
+            style: TextStyle(fontSize: 20.0),
+          ),
           ClipRRect(
             borderRadius: BorderRadius.circular(30.0),
             child: FadeInImage(

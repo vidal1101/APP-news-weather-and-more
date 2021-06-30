@@ -39,6 +39,7 @@ class MoviesHorizobtal extends StatelessWidget {
     return Container(
       height: mediaq.height * 0.4,
       child: PageView.builder(
+        pageSnapping: false, // mayor mobilidad al scrool del pageview.
         scrollDirection: Axis.horizontal,
         controller: controller,
         //children: _tarjets(),
@@ -59,14 +60,18 @@ class MoviesHorizobtal extends StatelessWidget {
       margin: EdgeInsets.only(right: 10.0),
       child: Column(
         children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(25.0),
-            child: FadeInImage(
-              fadeInDuration: Duration(seconds: 1),
-              placeholder: NetworkImage('https://suhsport.es/img/noImage.jpg'),
-              image: NetworkImage(peli.getPosterImg()),
-              fit: BoxFit.cover,
-              height: 195.0,
+          Hero( // da un efecto de traslado de tarjeta, pero debe exittir el id para donde se translade 
+            tag: peli.id,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(25.0),
+              child: FadeInImage(
+                fadeInDuration: Duration(seconds: 1),
+                placeholder:
+                    NetworkImage('https://suhsport.es/img/noImage.jpg'),
+                image: NetworkImage(peli.getPosterImg()),
+                fit: BoxFit.cover,
+                height: 195.0,
+              ),
             ),
           ),
           SizedBox(
@@ -83,11 +88,14 @@ class MoviesHorizobtal extends StatelessWidget {
     return GestureDetector(
       child: _tarjeta,
       onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Movie_Detalls(
+                      pelicula: peli,
+                    )));
 
-
-        Navigator.push(context, MaterialPageRoute(builder: (context)=> Movie_Detalls(pelicula: peli,) ));
-
-       // Navigator.pushNamed(context, 'detalle' , arguments: peli);
+        // Navigator.pushNamed(context, 'detalle' , arguments: peli);
       },
     );
   }

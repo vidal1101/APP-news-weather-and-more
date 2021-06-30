@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import 'package:news_app/providers/movie_providers.dart';
+import 'package:news_app/search_delegate/DataSearch.dart';
 import 'package:news_app/widget/drawer_lateral.dart';
 import 'package:news_app/widget/movie_horizontal.dart';
 import 'package:news_app/widget/swiper_tarjet.dart';
@@ -25,6 +26,13 @@ class HomePageMovies extends StatelessWidget {
       appBar: AppBar(
         //backgroundColor: mitemaGlobal.accentColor,
         title: Text('Movies'),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.search_sharp),
+              onPressed: () {
+                showSearch(context: context, delegate: DataSearh());
+              }),
+        ],
         //leading: Icon(Icons.search),
       ),
       drawer: Drawer_Page(),

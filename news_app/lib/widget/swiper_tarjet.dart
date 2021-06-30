@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:news_app/models/movie_models.dart';
+import 'package:news_app/pages/movies_detalls.dart';
 
 class SwiperTarjet extends StatefulWidget {
   /*Arrays tipo dynamic que se valida en  el contructor para que entre null
@@ -40,13 +41,26 @@ class _SwiperTarjetState extends State<SwiperTarjet> {
           itemWidth: _sizeDevice.width * 0.8,
           itemHeight: _sizeDevice.height * 0.8,
           itemBuilder: (BuildContext context, int index) {
-            return ClipRRect(
-              borderRadius: BorderRadius.circular(30.0),
-              child: FadeInImage(
-                fadeInDuration: Duration(seconds: 1),
-                placeholder: AssetImage('assets/loading.gif'),
-                image: NetworkImage(widget.peliculas[index].getPosterImg()),
-                fit: BoxFit.cover,
+            return Hero(
+              tag: widget.peliculas[index].id,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(30.0),
+                child: GestureDetector(
+                  child: FadeInImage(
+                    fadeInDuration: Duration(seconds: 1),
+                    placeholder: AssetImage('assets/loading.gif'),
+                    image: NetworkImage(widget.peliculas[index].getPosterImg()),
+                    fit: BoxFit.cover,
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Movie_Detalls(
+                                  pelicula: widget.peliculas[index],
+                                )));
+                  },
+                ),
               ),
             );
           },
