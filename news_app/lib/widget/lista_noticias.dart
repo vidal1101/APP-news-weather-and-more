@@ -5,6 +5,7 @@ import 'package:news_app/pages/detalls_page.dart';
 import 'package:news_app/theme/tema.dart';
 
 class Lista_Noticias extends StatefulWidget {
+  
   const Lista_Noticias(this.noticias);
 
   final List<Article> noticias;
