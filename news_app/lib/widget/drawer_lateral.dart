@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/pages/Weather_home_page.dart';
 import 'package:news_app/pages/home_page.dart';
+import 'package:news_app/pages/home_page_movies.dart';
 import 'package:news_app/pages/setting.dart';
 import 'package:news_app/theme/tema.dart';
 
@@ -8,18 +10,19 @@ class Drawer_Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Drawer(
+    return Drawer(
       child: ListView(
         //padding: EdgeInsets.zero,
         children: <Widget>[
+          /**
+           * cabecera de drawer
+           */
           DrawerHeader(
-              child: Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-              image: NetworkImage(
-                  'http://es.web.img2.acsta.net/newsv7/20/03/17/13/00/1542770.jpg'),
-              fit: BoxFit.cover,
-            )),
+              child: Row(
+            children: <Widget>[
+              avatarHeader(),
+              nombreAvatarHeader(),
+            ],
           )),
 
           /**
@@ -35,7 +38,9 @@ class Drawer_Page extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Home_Page()),
+                MaterialPageRoute(
+                    builder: (_) =>
+                        Home_Page()), // Noticias en la sesccion de inicio
               );
             },
           ),
@@ -46,7 +51,13 @@ class Drawer_Page extends StatelessWidget {
               color: mitemaGlobal.accentColor,
             ),
             trailing: trailing(),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => HomePageMovies()), // peliculas
+              );
+            },
           ),
           ListTile(
             title: Text('Weather'),
@@ -55,10 +66,13 @@ class Drawer_Page extends StatelessWidget {
               color: mitemaGlobal.accentColor,
             ),
             trailing: trailing(),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => WeatherHomePage())); //  seccion de clima
+            }, // seccion de clima que estaria en desarrollo
           ),
           ListTile(
-            title: Text('Setting'),
+            title: Text('Settings'),
             leading: Icon(
               Icons.settings,
               color: mitemaGlobal.accentColor,
@@ -67,7 +81,9 @@ class Drawer_Page extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SettingsPage()),
+                MaterialPageRoute(
+                    builder: (context) =>
+                        SettingsPage()), // la opcion de configuraciones del sistema.
               );
             },
           ),
@@ -76,7 +92,61 @@ class Drawer_Page extends StatelessWidget {
     );
   }
 
-   Widget trailing() {
+/*
+
+  para poner la foto del usuario en el drawer, 
+  jalada de assets a un assetimage, usando file 
+*/
+  Widget avatarHeader() {
+    return Container(
+      //color: Colors.red,
+      padding: EdgeInsets.all(3.0),
+      margin: EdgeInsets.only(right: 35.0),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(70.0),
+          color: mitemaGlobal.accentColor,
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: mitemaGlobal.accentColor,
+              blurRadius: 12.5,
+              spreadRadius: 2.3,
+              offset: Offset(3.0, 10.0),
+            )
+          ]),
+      child: CircleAvatar(
+        backgroundImage: AssetImage("assets/no-image.png"),
+        radius: 50.0,
+        child: Text(''),
+      ),
+    );
+  }
+
+/**
+ * nombre que pone el usuaurio en setting para mostrarlo junto con su foto
+ */
+  Widget nombreAvatarHeader() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 50.0),
+      //color: Colors.red,
+      child: Column(
+        children: <Widget>[
+          Text('Name:'),
+          Text(
+            '',
+            textAlign: TextAlign.left,
+            overflow: TextOverflow.visible,
+            style: TextStyle(fontWeight: FontWeight.w800),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /**
+   * 
+   * el icono de las flechas de ruta de cada parte  y acceso a una seccion. 
+   */
+  Widget trailing() {
     return Icon(
       Icons.arrow_forward_ios_rounded,
       color: mitemaGlobal.accentColor,

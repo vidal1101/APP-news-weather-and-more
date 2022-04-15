@@ -12,7 +12,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   bool _colorSecundario = false;
   int _genero = 1;
-  String _nombre = "Usuario";
+  String _nombre = "User";
 
   TextEditingController textEditingController;
 
@@ -30,10 +30,12 @@ class _SettingsPageState extends State<SettingsPage> {
    */
   loadprefs() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    _genero  = prefs.getInt("genero");
+    _genero = prefs.getInt("gender");
+    _nombre = prefs.getString("name");
     setState(() {});
   }
 
+  
 /**
  * usando sharedpreferences, similitud a localStorage, 
  * guarda la data en clave, valor. 
@@ -43,7 +45,15 @@ class _SettingsPageState extends State<SettingsPage> {
   setselected(int gender) async {
     _genero = gender;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setInt("genero", gender);
+    prefs.setInt("gender", gender);
+    setState(() {});
+  }
+
+  setnombre(String nombre) async {
+    print(nombre);
+    _nombre = nombre;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString("name", nombre);
     setState(() {});
   }
 
@@ -51,7 +61,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Setting'),
+        title: Text('Settings'),
       ),
       drawer: Drawer_Page(),
       body: ListView(
@@ -67,7 +77,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           Divider(),
           SwitchListTile(
-              title: Text("Color secundario"),
+              title: Text("Secondary color"),
               value: _colorSecundario,
               onChanged: (color) {
                 setState(() {
@@ -76,12 +86,12 @@ class _SettingsPageState extends State<SettingsPage> {
               }),
           RadioListTile(
               value: 1,
-              title: Text("Masculino"),
+              title: Text("Male"),
               groupValue: _genero,
               onChanged: setselected),
           RadioListTile(
               value: 2,
-              title: Text("Femenino"),
+              title: Text("Female"),
               groupValue: _genero,
               onChanged: setselected),
           Divider(),
@@ -92,10 +102,10 @@ class _SettingsPageState extends State<SettingsPage> {
               decoration: InputDecoration(
                 suffixIcon: Icon(Icons.accessibility),
                 icon: Icon(Icons.account_circle_rounded),
-                labelText: "Nombre",
-                helperText: "Nombre del usuario con el dispositivo",
+                labelText: "Name",
+                helperText: "your name",
               ),
-              onChanged: (nombre) {},
+              onChanged: setnombre ,
             ),
           ),
         ],
