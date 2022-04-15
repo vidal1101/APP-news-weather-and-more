@@ -72,7 +72,7 @@ class Drawer_Page extends StatelessWidget {
             }, // seccion de clima que estaria en desarrollo
           ),
           ListTile(
-            title: Text('Setting'),
+            title: Text('Settings'),
             leading: Icon(
               Icons.settings,
               color: mitemaGlobal.accentColor,
@@ -114,8 +114,7 @@ class Drawer_Page extends StatelessWidget {
             )
           ]),
       child: CircleAvatar(
-        backgroundImage: NetworkImage(
-            'https://oriettabock.com/wp-content/uploads/tiposrostrofemeninos.jpg'),
+        backgroundImage: AssetImage("assets/no-image.png"),
         radius: 50.0,
         child: Text(''),
       ),
@@ -131,9 +130,9 @@ class Drawer_Page extends StatelessWidget {
       //color: Colors.red,
       child: Column(
         children: <Widget>[
-          Text('Nombre:'),
+          Text('Name:'),
           Text(
-            'Angelina  Jolie',
+            '',
             textAlign: TextAlign.left,
             overflow: TextOverflow.visible,
             style: TextStyle(fontWeight: FontWeight.w800),

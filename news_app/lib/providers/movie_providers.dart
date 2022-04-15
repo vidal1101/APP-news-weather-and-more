@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'dart:async';
 
 import 'package:news_app/models/movie_models.dart';
+import 'package:news_app/models/search_movie_response.dart';
 
 class MoviesProviders {
   String _url = "api.themoviedb.org";
@@ -95,6 +96,21 @@ las peliculas listas para ser usadas en la app.
 
 
   }
+
+
+   Future<List<Pelicula>> searchMovieResponse(String query) async {
+
+    final url = Uri.https(_url, '3/search/movie', {
+      'api_key': _apiKey,
+      'language': _lenguaje,
+      'query' : query,
+    });
+
+    final response = await http.get(url);
+    final searchResponse  = SearchMovieResponse.fromJson(response.body);
+
+    return searchResponse.results;
+  } 
 
 
 

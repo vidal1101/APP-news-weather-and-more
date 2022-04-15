@@ -126,7 +126,7 @@ class Movie_Detalls extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
-                'Lnaguaje: ' + peli.originalLanguage.toString(),
+                'Language: ' + peli.originalLanguage.toString(),
                 style: TextStyle(fontWeight: FontWeight.bold),
                 overflow: TextOverflow.ellipsis,
               ),
@@ -173,7 +173,7 @@ class Movie_Detalls extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(10.0),
             child: Text(
-              'Actores',
+              'Actors',
               style: TextStyle(fontSize: 25.0),
             ),
           ),

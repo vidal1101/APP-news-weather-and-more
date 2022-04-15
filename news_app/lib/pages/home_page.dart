@@ -15,11 +15,11 @@ class Home_Page extends StatelessWidget {
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            title: Text('News App '),
+            title: Text('News'),
           ),
           drawer: Drawer_Page(),
-          body: _paginas(),
-          bottomNavigationBar: _navegacion(),
+          body: _Paginas(),
+          bottomNavigationBar: _Navegacion(),
         ),
       ),
     );
@@ -29,7 +29,7 @@ class Home_Page extends StatelessWidget {
 
  
 
-class _paginas extends StatelessWidget {
+class _Paginas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final navegar = Provider.of<_NavegacionModal>(context);
@@ -37,8 +37,8 @@ class _paginas extends StatelessWidget {
       controller: navegar.pageControler,
       physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
-        Tab1Page(), //seccion de noticias
-        Tab2Page(),  //sesion de emcabezados
+        Tab1Page(), //seccion de noticias (for  you)
+        Tab2Page(),  //sesion de emcabezados (headers)
         //Container(color: Colors.purpleAccent),
         //
       ],
@@ -46,7 +46,7 @@ class _paginas extends StatelessWidget {
   }
 }
 
-class _navegacion extends StatelessWidget {
+class _Navegacion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // obtengo la instancia de la clase singleton.
@@ -60,9 +60,9 @@ class _navegacion extends StatelessWidget {
         },
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline), title: Text('Para ti')),
+              icon: Icon(Icons.person_outline), label:'For you'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.public), title: Text('Encabezados')),
+              icon: Icon(Icons.public), label: 'Headers'),
         ]);
   }
 }
