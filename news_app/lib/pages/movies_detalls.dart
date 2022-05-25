@@ -215,20 +215,23 @@ class Movie_Detalls extends StatelessWidget {
   Widget _actorTarjeta(Actor actor) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
-      child: Column(
-        children: <Widget>[
-          Text(
-            '${actor.name}',
-            style: TextStyle(fontSize: 20.0),
-          ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(30.0),
-            child: FadeInImage(
-                fadeInDuration: Duration(seconds: 1),
-                placeholder: AssetImage('assets/backloading.gif'),
-                image: NetworkImage(actor.getPosterImgProfileActor())),
-          ),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Text(
+              '${actor.name}',
+              style: TextStyle(fontSize: 17.0),
+            ),
+            
+            ClipRRect(
+              borderRadius: BorderRadius.circular(30.0),
+              child: FadeInImage(
+                  fadeInDuration: Duration(seconds: 1),
+                  placeholder: AssetImage('assets/backloading.gif'),
+                  image: NetworkImage(actor.getPosterImgProfileActor())),
+            ),
+          ],
+        ),
       ),
     );
   }
