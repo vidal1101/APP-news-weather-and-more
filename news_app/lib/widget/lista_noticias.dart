@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/models/new_models.dart';
 import 'package:news_app/pages/detalls_page.dart';
 import 'package:news_app/theme/tema.dart';
+import 'package:sentry/sentry.dart';
 
 class Lista_Noticias extends StatefulWidget {
   
@@ -213,6 +214,7 @@ class _Botones extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final transaction = Sentry.startTransaction('processOrderBatch()', 'task');
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -233,13 +235,23 @@ class _Botones extends StatelessWidget {
           ),
           RawMaterialButton(
             onPressed: () {
-              Navigator.push(
+
+              try {
+                 Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => DetallsNews(
                           noticia: noticia,
                         )),
               );
+
+
+              } catch (exception) {
+                transaction.throwable = exception;
+                transaction.status = SpanStatus.internalError();
+              } 
+
+              
             },
             fillColor: Colors.red,
             shape: RoundedRectangleBorder(
