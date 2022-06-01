@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/pages/home_page.dart';
 import 'package:news_app/providers/movie_providers.dart';
 import 'package:news_app/services/new_service.dart';
+import 'package:news_app/splash/splahscreen.dart';
 import 'package:news_app/theme/tema.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         theme: mitemaGlobal,
         debugShowCheckedModeBanner: false,
         //initialRoute: '/',
-        home: Home_Page(),
+        home: Splah(),
       ),
     );
   }

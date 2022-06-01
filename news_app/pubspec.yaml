@@ -36,6 +36,7 @@ dependencies:
   platform: ^3.1.0
   intl: any
   sentry_flutter: ^6.5.1
+  animated_splash_screen: ^1.2.0
 
 
 
@@ -67,6 +68,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
   - assets/
+  - assets/icon/
   - assets/background_states/
   #   - images/a_dot_ham.jpeg
 
