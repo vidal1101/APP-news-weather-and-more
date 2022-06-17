@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/pages/home_page.dart';
+import 'package:news_app/atomic/theme/tema.dart';
 import 'package:news_app/providers/movie_providers.dart';
 import 'package:news_app/services/new_service.dart';
-import 'package:news_app/splash/splahscreen.dart';
-import 'package:news_app/theme/tema.dart';
+import 'package:news_app/services/services_weather.dart';
+import 'package:news_app/widget/splahscreen.dart';
 import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => new New_Service() ),
         Provider<MoviesProviders>(create: (_)=> MoviesProviders(),),
+        ChangeNotifierProvider(create: (_)=> new ServiceWeather()),
       ],
           child: MaterialApp(
         theme: mitemaGlobal,

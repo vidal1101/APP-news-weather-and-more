@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/atomic/theme/tema.dart';
 import 'package:news_app/models/new_models.dart';
-import 'package:news_app/theme/tema.dart';
 
 class DetallsNews extends StatelessWidget {
   final Article noticia;

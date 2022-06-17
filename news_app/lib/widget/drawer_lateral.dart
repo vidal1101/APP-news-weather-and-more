@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/atomic/theme/tema.dart';
 import 'package:news_app/pages/Weather_home_page.dart';
 import 'package:news_app/pages/home_page.dart';
 import 'package:news_app/pages/home_page_movies.dart';
 import 'package:news_app/pages/setting.dart';
-import 'package:news_app/theme/tema.dart';
 
 class Drawer_Page extends StatelessWidget {
   const Drawer_Page({Key key}) : super(key: key);
