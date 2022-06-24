@@ -4,34 +4,77 @@
 
 import 'dart:convert';
 
+
 Weather weatherFromJson(String str) => Weather.fromJson(json.decode(str));
 
 String weatherToJson(Weather data) => json.encode(data.toJson());
 
 class Weather {
+
+    List<Location> locationlist = [];
     Weather({
         this.location,
         this.current,
-        this.currentlist,
     });
 
     final Location location;
     final Current current;
-    List<Current> currentlist ;
 
     factory Weather.fromJson(Map<String, dynamic> json) => Weather(
         location: Location.fromJson(json["location"]),
         current: Current.fromJson(json["current"]),
-         currentlist: List<Current>.from(json["current"].map((x) => Current.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
         "location": location.toJson(),
         "current": current.toJson(),
-        "currentlist": List<dynamic>.from(currentlist.map((x) => x.toJson())),
-
     };
 }
+
+class Location {
+    Location({
+        this.name,
+        this.region,
+        this.country,
+        this.lat,
+        this.lon,
+        this.tzId,
+        this.localtimeEpoch,
+        this.localtime,
+    });
+
+    final String name;
+    final String region;
+    final String country;
+    final double lat;
+    final double lon;
+    final String tzId;
+    final int localtimeEpoch;
+    final String localtime;
+
+    factory Location.fromJson(Map<String, dynamic> json) => Location(
+        name: json["name"],
+        region: json["region"],
+        country: json["country"],
+        lat: json["lat"].toDouble(),
+        lon: json["lon"].toDouble(),
+        tzId: json["tz_id"],
+        localtimeEpoch: json["localtime_epoch"],
+        localtime: json["localtime"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "name": name,
+        "region": region,
+        "country": country,
+        "lat": lat,
+        "lon": lon,
+        "tz_id": tzId,
+        "localtime_epoch": localtimeEpoch,
+        "localtime": localtime,
+    };
+}
+
 
 class Current {
     Current({
@@ -68,21 +111,21 @@ class Current {
     final int isDay;
     final Condition condition;
     final double windMph;
-    final int windKph;
+    final double windKph;
     final int windDegree;
     final String windDir;
-    final int pressureMb;
+    final double pressureMb;
     final double pressureIn;
-    final int precipMm;
-    final int precipIn;
+    final double precipMm;
+    final double precipIn;
     final int humidity;
     final int cloud;
     final double feelslikeC;
     final double feelslikeF;
-    final int visKm;
-    final int visMiles;
-    final int uv;
-    final int gustMph;
+    final double visKm;
+    final double visMiles;
+    final double uv;
+    final double gustMph;
     final double gustKph;
     final Map<String, double> airQuality;
 
@@ -165,46 +208,3 @@ class Condition {
     };
 }
 
-class Location {
-    Location({
-        this.name,
-        this.region,
-        this.country,
-        this.lat,
-        this.lon,
-        this.tzId,
-        this.localtimeEpoch,
-        this.localtime,
-    });
-
-    final String name;
-    final String region;
-    final String country;
-    final double lat;
-    final double lon;
-    final String tzId;
-    final int localtimeEpoch;
-    final String localtime;
-
-    factory Location.fromJson(Map<String, dynamic> json) => Location(
-        name: json["name"],
-        region: json["region"],
-        country: json["country"],
-        lat: json["lat"].toDouble(),
-        lon: json["lon"].toDouble(),
-        tzId: json["tz_id"],
-        localtimeEpoch: json["localtime_epoch"],
-        localtime: json["localtime"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "name": name,
-        "region": region,
-        "country": country,
-        "lat": lat,
-        "lon": lon,
-        "tz_id": tzId,
-        "localtime_epoch": localtimeEpoch,
-        "localtime": localtime,
-    };
-}

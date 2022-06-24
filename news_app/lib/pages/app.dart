@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => new New_Service() ),
         Provider<MoviesProviders>(create: (_)=> MoviesProviders(),),
-        ChangeNotifierProvider(create: (_)=> new ServiceWeather()),
+        Provider<ServiceWeather>(create: (_)=> ServiceWeather() ,),
       ],
           child: MaterialApp(
         theme: mitemaGlobal,

@@ -18,7 +18,6 @@ class _Tab1PageState extends State<Tab1Page>
   @override
   Widget build(BuildContext context) {
     final newservice = Provider.of<New_Service>(context);
-    final newwaether = Provider.of<ServiceWeather>(context).getweather();
 
     return Scaffold(
       body: (newservice.headers.length == 0) //si no hay data se carga el loading
