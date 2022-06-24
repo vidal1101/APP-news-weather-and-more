@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/services/new_service.dart';
-import 'package:news_app/theme/tema.dart';
+import 'package:news_app/services/services_weather.dart';
 import 'package:news_app/widget/lista_noticias.dart';
 import 'package:provider/provider.dart';
 

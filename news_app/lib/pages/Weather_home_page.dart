@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/widget/cities_weather/cities_page.dart';
 import 'package:news_app/widget/drawer_lateral.dart';
 
 class WeatherHomePage extends StatefulWidget {
@@ -61,7 +62,9 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
                         borderRadius: BorderRadius.circular(15.0),
                       ),
                       child: Text('Add city'),
-                      onPressed: () {}),
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (_)=> Cities() ));
+                      }),
                 ],
               ),
             ),

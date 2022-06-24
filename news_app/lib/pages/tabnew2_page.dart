@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/atomic/theme/tema.dart';
 import 'package:news_app/models/category_modal.dart';
 import 'package:news_app/services/new_service.dart';
-import 'package:news_app/theme/tema.dart';
 import 'package:news_app/widget/lista_noticias.dart';
 import 'package:provider/provider.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/atomic/theme/tema.dart';
 import 'package:news_app/models/actores_movies_model.dart';
 import 'package:news_app/models/movie_models.dart';
 import 'package:news_app/providers/movie_providers.dart';
-import 'package:news_app/theme/tema.dart';
 
 class Movie_Detalls extends StatelessWidget {
   //objeto pelicula

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/atomic/theme/tema.dart';
 import 'package:news_app/models/new_models.dart';
 import 'package:news_app/pages/detalls_page.dart';
-import 'package:news_app/theme/tema.dart';
 import 'package:sentry/sentry.dart';
 
 class Lista_Noticias extends StatefulWidget {

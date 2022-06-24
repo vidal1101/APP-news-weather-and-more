@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.RodrigoVidalDev.news_app">
+
+   <uses-permission android:name="android.permission.INTERNET"/>
+
    <application
         android:label="News-Movies"
         android:icon="@mipmap/launcher_icon">
