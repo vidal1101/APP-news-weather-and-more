@@ -37,6 +37,7 @@ dependencies:
   intl: any
   sentry_flutter: ^6.5.1
   animated_splash_screen: ^1.2.0
+  lottie: ^1.3.0
 
 
 
@@ -70,6 +71,7 @@ flutter:
   - assets/
   - assets/icon/
   - assets/background_states/
+  - assets/splash/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
