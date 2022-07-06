@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/pages/pages.dart';
 import 'package:news_app/widget/MainHome/background_home.dart';
-import 'package:news_app/widget/MainHome/main_home_page.dart';
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
@@ -21,7 +21,7 @@ class _SplahState extends State<Splah> {
       splash: _bodySplash(),
       //backgroundColor: Colors.red,
       splashIconSize: double.infinity,
-      nextScreen: MainSplashHome(), //mainHiome
+      nextScreen: CheckAuthScreen(), //mainHiome
       duration: 3500,
       //centered: true,
       curve: Curves.easeInExpo,
