@@ -46,17 +46,17 @@ class _SplahState extends State<Splah> {
         height: 200 , width: 200),
         SizedBox(height: 10,),
         Center(
-          child: Text('News,Movies and Weather',
+          child: Text('LOADING...',
           style: TextStyle(fontSize: 15 , fontWeight:  FontWeight.bold, color:  Colors.white) ,),
           ),
         ],
       ),
 
       Positioned( 
-        top: mediaquey.height * 0.95,
+        top: mediaquey.height * 0.93,
         child: Center(
           child: Text('By Rodrigo Vidal' , 
-          style: TextStyle(color:  Colors.purpleAccent, fontSize: 20,   ) ),
+          style: TextStyle(color:  Colors.purpleAccent, fontSize: 17,   ) ),
         )),
       ],
     );

@@ -19,8 +19,8 @@ class CheckAuthScreen extends StatelessWidget {
                 return Text('espere..');
               }
 
-              if (snapshot.data == '') {   //revisar si teneemos un token  , sino a login
-
+              if (snapshot.data == '') { 
+                  //revisar si teneemos un token  , sino a login
                 Future.microtask(() {
                   Navigator.pushReplacement(
                       context,
@@ -30,8 +30,8 @@ class CheckAuthScreen extends StatelessWidget {
                       ));
                 });
 
-              }else{   // si ya existe un token vamos al homepage
-
+              }else{   
+                // si ya existe un token vamos al homepage
                 Future.microtask(() {
                   Navigator.pushReplacement(
                       context,
